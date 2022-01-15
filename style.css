@@ -1,0 +1,172 @@
+@font-face {
+    font-family: DeterminationMono;
+    src: url('DTM-Mono.otf');
+}
+
+body {
+    font-family: DeterminationMono, sans-serif;
+    margin: 0;
+    padding: 0;
+    font-size: 16pt;
+}
+
+header {
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+h1,
+h2,
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+header h1 {
+    float: left;
+    width: 20%;
+    font-weight: lighter;
+    letter-spacing: -3pt;
+    user-select: none;
+}
+
+header h1 a {
+    margin: 5px;
+    font-size: 35pt;
+    text-indent: 35%;
+    display: block;
+    background-image: url('switch.svg');
+    background-position: top left;
+    background-repeat: no-repeat;
+    color: black;
+    text-transform: lowercase;
+}
+
+header h1 a:hover {
+    text-decoration: none;
+    color: black;
+}
+
+header nav {
+    width: 70%;
+    float: right;
+    margin-left: 10%;
+}
+
+header nav h2 {
+    padding-top: 10pt;
+    font-size: 100%;
+    line-height: 5pt;
+    text-align: center;
+}
+
+header nav ul {
+    display: table;
+    list-style-type: none;
+    font-size: 100%;
+    padding-top: 10pt;
+    width: 100%;
+}
+
+header nav li {
+    display: table-cell;
+    margin-right: 10px;
+    /* width: fit-content; */
+    text-align: center;
+    background-color: #eeeeee;
+    border: 1px solid #aaaaaa;
+}
+
+header nav li:first-child {
+    border-right: none;
+}
+
+header nav li:hover {
+    background-color: #dddddd;
+}
+
+.main {
+    border-top: 3px solid gray;
+    height: 600px;
+    width: 100%;
+    overflow: hidden;
+    background-image: url('bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 50%;
+}
+
+.main article {
+    width: 60%;
+    margin: 0 auto;
+    background-color: #dddddd;
+}
+
+.main ul {
+    list-style-type: none;
+    margin-top: 10px;
+}
+
+.main li {
+    border: 1px solid #aaaaaa;
+    border-bottom: none;
+}
+
+a:visited {
+    text-decoration: none;
+    color: black;
+}
+
+header nav {
+    display: inline;
+}
+
+a {
+    text-decoration: none;
+}
+
+.control-on {
+    background: url('toggle.png') 0 0;
+}
+
+.control-off {
+    position: relative;
+    background: url('toggle.png') 0 -100px;
+}
+
+.control-off,
+.control-on {
+    width: 90%;
+    height: 96px;
+    font-weight: bold;
+    font-size: 74px;
+    background-repeat: no-repeat;
+    color: #333333;
+    margin: 0 auto;
+    margin-top: 10px;
+    border-radius: 5px;
+    text-indent: 220px;
+}
+
+.timing {
+    text-align: center;
+}
+
+.red {
+    color: #CC0000;
+    /*text-shadow: -1px -1px 0 #333, 1px -1px 0 #333, -1px 1px 0 #333, 1px 1px 0 #333;*/
+}
+
+.green {
+    color: #00CC00;
+    /*text-shadow: -1px -1px 0 #333, 1px -1px 0 #333, -1px 1px 0 #333, 1px 1px 0 #333;*/
+}
+
+p {
+    padding: 0;
+    margin: 0;
+}
+
+h1 {
+    font-size: 24px;
+}
