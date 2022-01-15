@@ -218,3 +218,11 @@ footer {
     box-sizing: border-box;
     overflow: hidden;
 }
+
+footer a {
+    color: green;
+}
+
+footer a:hover {
+    color: lime;
+}
