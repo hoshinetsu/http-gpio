@@ -8,11 +8,14 @@ body {
     margin: 0;
     padding: 0;
     font-size: 16pt;
+    user-select: none;
+    background-color: #eee;
 }
 
 header {
     margin: 0 auto;
     max-width: 800px;
+    max-height: 10vh;
 }
 
 h1,
@@ -27,7 +30,6 @@ header h1 {
     width: 20%;
     font-weight: lighter;
     letter-spacing: -3pt;
-    user-select: none;
 }
 
 header h1 a {
@@ -87,29 +89,38 @@ header nav li:hover {
 
 .main {
     border-top: 3px solid gray;
-    height: 600px;
+    height: 90vh;
     width: 100%;
     overflow: hidden;
     background-image: url('bg.jpg');
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
     background-size: cover;
     background-repeat: no-repeat;
     min-height: 50%;
 }
 
 .main article {
-    width: 60%;
+    width: 75%;
     margin: 0 auto;
-    background-color: #dddddd;
+    margin-top: 16px;
+    background-color: #bbb;
+    padding-top: 16px;
+    padding-bottom: 16px;
 }
 
 .main ul {
     list-style-type: none;
-    margin-top: 10px;
+    width: 96%;
+    margin: 0 auto;
 }
 
 .main li {
     border: 1px solid #aaaaaa;
+    background-color: #ddd;
     border-bottom: none;
+    margin-top: 10px;
+    border-radius: 5px;
 }
 
 a:visited {
@@ -162,11 +173,48 @@ a {
     /*text-shadow: -1px -1px 0 #333, 1px -1px 0 #333, -1px 1px 0 #333, 1px 1px 0 #333;*/
 }
 
+.error {
+    text-decoration: underline;
+    text-decoration-color: #AA0000;
+    font-style: italic;
+}
+
+.error:before {
+    content: "Error:";
+    padding-left: 10px;
+    padding-top: auto;
+}
+
 p {
-    padding: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
     margin: 0;
+    text-align: center;
+}
+
+#slogan {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    font-size: 1.5em;
 }
 
 h1 {
     font-size: 24px;
+}
+
+footer {
+    clear: both;
+    border-top: 5px solid #333333;
+    color: #ccc;
+    font-size: 0.6em;
+    line-height: 32px;
+    text-align: center;
+    padding-top: 16px;
+    background-color: #666666;
+    max-height: 10vh;
+    height: fit-content;
+    box-sizing: border-box;
+    overflow: hidden;
 }

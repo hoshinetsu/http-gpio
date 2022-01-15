@@ -12,7 +12,7 @@ HI = 1
 # CONFIG
 # 	GPIO Access Control List
 # 	Format: pin_id:(mode, initial_state)
-gpioacl = {23: (OUT, LO), 22:(OUT,LO)}
+gpioacl = {23: (OUT, LO), 22: (OUT, LO)}
 
 # IP Address for the server to listen on
 iface = '0.0.0.0'
@@ -24,10 +24,10 @@ port = 8080
 chip = dio.gpiochip_open(0)
 for key in gpioacl:
     #dio.setup(key, gpioacl[key][0], initial=gpioacl[key][1])
-	if gpioacl[key][0] == 1:
-		dio.gpio_claim_output(chip, key, level=gpioacl[key][1])
-	else:
-		dio.gpio_claim_input(chip, key)
+    if gpioacl[key][0] == 1:
+        dio.gpio_claim_output(chip, key, level=gpioacl[key][1])
+    else:
+        dio.gpio_claim_input(chip, key)
 
 rmsg = {200: "OK", 404: "Not Found",
         400: "Bad Request", 418: "I'm a teapot uwu."}
@@ -53,7 +53,7 @@ index = load("index.htm").encode()
 mime = ["text/html; charset=UTF-8", "text/css", "image/png",
         "image/jpeg", "application/x-font-opentype", "image/svg+xml"]
 staticResources = {"style.css": [load("style.css").encode(), 1], "": [index, 0], "bg.jpg": [
-    load("bg.jpg", "b"), 3], "switch.svg": [load("switch.svg", "b"), 5], "DTM-Mono.otf": [load("DTM-Mono.otf", "b"), 4], "toggle.png":[load("toggle.png", "b"), 2]}
+    load("bg.jpg", "b"), 3], "switch.svg": [load("switch.svg", "b"), 5], "DTM-Mono.otf": [load("DTM-Mono.otf", "b"), 4], "toggle.png": [load("toggle.png", "b"), 2]}
 
 
 class Client(Thread):
@@ -96,7 +96,7 @@ class Client(Thread):
 
         get = req.find("GET /") + 5
         req = req[get:req.find(" ", get)]
-        if not req.startswith("ctrl"):
+        if not req.startswith("ctl"):
             if req in staticResources:
                 self.code = 200
                 self.transmit(
@@ -104,7 +104,8 @@ class Client(Thread):
                 return
 
             self.code = 404
-            self.res(f"<li class='error'>Resource \"{req}\" not found\r\n</li>", True)
+            self.res(
+                f"<li class='error'><p>Resource \"{req}\" not found\r\n</p></li>", True)
             self.respond(cli, False)
             return
         try:
@@ -113,16 +114,19 @@ class Client(Thread):
             for param in spl:
                 a, b = param.split("=", 1)
                 if not a.startswith("gpio"):
-                    self.res(f"<li class='error>Invalid param \"{a}\" - skip</li>")
+                    self.res(
+                        f"<li class='error'><p>Invalid param \"{a}\" - skip</p></li>")
                     continue
                 try:
                     a = int(a[4:])
                     b = int(b)
                 except Exception as e:
-                    self.res(f"<li class='error>Number format error: \"{e}\" - skip</li>")
+                    self.res(
+                        f"<li class='error'><p>Number format error: \"{e}\" - skip</p></li>")
                     continue
                 if not a in gpioacl:
-                    self.res(f"<li class='error>Forbidden GPIO {a} - skip</li>")
+                    self.res(
+                        f"<li class='error'><p>Forbidden GPIO {a} - skip</p></li>")
                     continue
                 if gpioacl[a][0] == OUT:
                     if b <= 0:
@@ -134,11 +138,13 @@ class Client(Thread):
                         self.res(
                             f'<li><a href="?{par.replace(param, param[:-1] + "0")}"><div class="control-off">GPIO {a}: <span class="red">OFF</span></div></a></li>')
                     continue
-                self.res(f"<li class='error>Bad GPIO mode for {a} - skip</li>")
+                self.res(
+                    f"<li class='error'><p>Bad GPIO mode for {a} - skip</p></li>")
             self.res(
-                f"<li><p class='timing'>End of request processing; time: {str(time.time() - stime)[0:8]}s</p><li>", True)
+                f"<li><p class='timing'>Site generated in {str(time.time() - stime)[0:8]}s</p></li>", True)
         except Exception as e:
-            self.res(f"<li class='error><p>Error while processing request: {e}</p></li>")
+            self.res(
+                f"<li class='error'><p>Error while processing request: {e}</p></li>")
         finally:
             self.respond(cli, False)
 
